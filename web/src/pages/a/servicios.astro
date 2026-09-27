@@ -1,0 +1,67 @@
+---
+import LayoutA from "@/layouts/LayoutA.astro";
+import Icono from "@/components/Icono.astro";
+import Abanico from "@/components/Abanico.astro";
+import CtaA from "@/components/modelo-a/CtaA.astro";
+import { categorias } from "@/data/seguros";
+---
+<LayoutA title="Nuestros servicios" active="servicios">
+  <!-- PORTADA -->
+  <section class="relative overflow-hidden bg-ink px-6 py-20 lg:px-10">
+    <Abanico class="fan-pattern -bottom-16 right-[-100px] hidden w-[700px] opacity-15 md:block" color="#d9be86" />
+    <div class="mx-auto flex max-w-7xl flex-col gap-6">
+      <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold">
+        <span class="h-px w-10 bg-gold"></span>Nuestros servicios
+      </span>
+      <h1 class="max-w-4xl font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+        Seguros para personas, familias y <span class="text-gold">empresas</span>
+      </h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-cream/75">
+        Te asesoramos para elegir la póliza adecuada, la financiamos hasta en un 100% y te acompañamos si llegas a necesitar una reclamación.
+      </p>
+      <nav aria-label="Categorías" class="flex flex-wrap gap-3 pt-2">
+        {categorias.map((c) => (
+          <a href={`#${c.id}`} class="inline-flex h-11 items-center rounded-full border border-white/25 px-5 text-[15px] font-medium text-white transition-colors hover:border-gold hover:text-gold">{c.nombre}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  {categorias.map((c, idx) => (
+    <section id={c.id} class:list={["scroll-mt-24 px-6 py-24 lg:px-10", idx % 2 === 0 ? "bg-cream" : "bg-cream-2"]}>
+      <div class="mx-auto flex max-w-7xl flex-col gap-11">
+        <div class="flex flex-col items-end justify-between gap-6 md:flex-row">
+          <div class="flex items-center gap-5">
+            <span class="flex h-18 w-18 shrink-0 items-center justify-center rounded-full bg-ink text-gold"><Icono name={c.icono} class="h-8 w-8" /></span>
+            <div class="flex flex-col gap-1">
+              <span class="text-sm font-semibold tracking-[0.14em] text-gold-ink">0{idx + 1}</span>
+              <h2 class="font-display text-4xl font-bold leading-none text-ink sm:text-[46px]">{c.titulo}</h2>
+            </div>
+          </div>
+          <p class="max-w-lg text-base leading-relaxed text-mute">{c.intro}</p>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {c.polizas.map((p) => (
+            <article class="flex flex-col gap-3 rounded-2xl border border-[#e6dcc8] bg-white/60 p-7">
+              <span class="w-7 rounded bg-gold" style="height:3px"></span>
+              <h3 class="font-display text-[22px] font-bold leading-tight text-ink">{p.titulo}</h3>
+              <p class="text-[14.5px] leading-relaxed text-mute">{p.descripcion}</p>
+              {p.detalles && (
+                <ul class="mt-1 grid gap-2 sm:grid-cols-2">
+                  {p.detalles.map((d) => (
+                    <li class="flex items-center gap-2 text-[14px] text-carbon">
+                      <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-ink"></span>{d}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaA titulo="¿No sabes qué póliza necesitas?" texto="Te asesoramos y financiamos hasta el 100% de tu póliza." />
+</LayoutA>

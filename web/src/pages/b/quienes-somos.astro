@@ -1,0 +1,94 @@
+---
+import LayoutB from "@/layouts/LayoutB.astro";
+import Icono from "@/components/Icono.astro";
+import LogosClientes from "@/components/LogosClientes.astro";
+import Aliados from "@/components/Aliados.astro";
+import LlamadaB from "@/components/modelo-b/LlamadaB.astro";
+import { historia, mision, vision } from "@/data/agencia";
+
+const diferenciales = [
+  { n: "01", t: "Especialistas en transporte", d: "Experiencia en la identificación y protección de los riesgos propios del sector transporte: empresas, propietarios y operadores." },
+  { n: "02", t: "Visión jurídica", d: "Dirección a cargo de un abogado especialista en Derecho Procesal y en Responsabilidad Civil y del Estado, que aporta valor al análisis de coberturas y siniestros." },
+  { n: "03", t: "Acompañamiento en reclamaciones", d: "Asesoría continua ante las aseguradoras cuando el cliente realmente lo necesita." },
+  { n: "04", t: "Financiación del 100%", d: "Con CrediSeguro y Finesa financias la totalidad de tu póliza." },
+];
+---
+<LayoutB title="Quiénes somos" active="quienes">
+  <!-- PORTADA / HISTORIA -->
+  <section class="bg-sand px-6 py-20 lg:px-10">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+      <div class="flex flex-col gap-6">
+        <nav aria-label="Ruta" class="flex gap-2 text-[13.5px] text-slate"><a href="/b" class="hover:text-navy">Inicio</a><span>/</span><span class="font-bold text-navy">Quiénes somos</span></nav>
+        <h1 class="text-4xl font-extrabold leading-[1.06] tracking-tight text-navy sm:text-5xl">Asesoría cercana, técnica y <span class="text-gold-ink">responsable</span></h1>
+        <div class="flex flex-col gap-4">
+          {historia.map((p) => <p class="text-[16.5px] leading-relaxed text-slate">{p}</p>)}
+        </div>
+        <div class="flex flex-wrap gap-3 pt-1">
+          <a href="/b/servicios" class="inline-flex h-13 items-center rounded-xl bg-navy px-6 font-bold text-white transition-colors hover:bg-navy-2">Ver nuestros servicios</a>
+          <a href="/b/contacto" class="inline-flex h-13 items-center rounded-xl border border-navy px-6 font-bold text-navy transition-colors hover:bg-navy hover:text-white">Contáctanos</a>
+        </div>
+      </div>
+      <div class="reveal group mx-auto w-full max-w-md">
+        <div class="overflow-hidden rounded-[28px] border-2 border-gold-2/40 bg-navy-2 shadow-brand">
+          <img src="/images/fotos/director-oficina.jpg" alt="Julio Ramón Velosa Huertas, director de Agencia Vintage de Seguros" class="aspect-[3/4] h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN Y VISIÓN -->
+  <section class="bg-white px-6 py-24 lg:px-10">
+    <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
+      <article class="reveal flex flex-col gap-4 rounded-3xl border border-[#e3ded3] p-10">
+        <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-sand text-gold-ink"><Icono name="diana" class="h-6 w-6" /></span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-navy">Misión</h2>
+        {mision.map((p) => <p class="text-[16px] leading-relaxed text-slate">{p}</p>)}
+      </article>
+      <article class="reveal flex flex-col gap-4 rounded-3xl bg-navy p-10">
+        <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-2 text-gold-soft"><Icono name="ojo" class="h-6 w-6" /></span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-white">Visión</h2>
+        {vision.map((p) => <p class="text-[16px] leading-relaxed text-[#c8d3e3]">{p}</p>)}
+      </article>
+    </div>
+  </section>
+
+  <!-- POR QUÉ ELEGIRNOS -->
+  <section class="bg-sand px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-12">
+      <div class="flex flex-col items-end justify-between gap-6 md:flex-row">
+        <div class="flex flex-col gap-3">
+          <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-ink">Por qué elegirnos</span>
+          <h2 class="text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl">Más que expedir una póliza</h2>
+        </div>
+        <p class="max-w-md text-base leading-relaxed text-slate">Conocer el riesgo, estructurar una protección adecuada y acompañarte cuando realmente lo necesitas.</p>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {diferenciales.map((d) => (
+          <article class="reveal flex flex-col gap-3 rounded-[22px] bg-white p-8">
+            <span class="text-4xl font-extrabold tracking-tight text-gold-2">{d.n}</span>
+            <h3 class="text-xl font-extrabold text-navy">{d.t}</h3>
+            <p class="text-[15px] leading-relaxed text-slate">{d.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section class="bg-white px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-10">
+      <div class="flex flex-col items-center gap-3 text-center">
+        <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-ink">Nuestros clientes</span>
+        <h2 class="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">Empresas que confían en nosotros</h2>
+      </div>
+      <LogosClientes theme="b" />
+    </div>
+  </section>
+
+  <!-- ALIADOS -->
+  <section class="bg-sand px-6 py-20 lg:px-10">
+    <Aliados theme="b" />
+  </section>
+
+  <LlamadaB />
+</LayoutB>

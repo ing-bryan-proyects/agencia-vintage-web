@@ -1,0 +1,158 @@
+---
+import LayoutB from "@/layouts/LayoutB.astro";
+import Icono from "@/components/Icono.astro";
+import Abanico from "@/components/Abanico.astro";
+import Aliados from "@/components/Aliados.astro";
+import LlamadaB from "@/components/modelo-b/LlamadaB.astro";
+import { categoriasPersonas, categoriasEmpresas, categorias } from "@/data/seguros";
+---
+<LayoutB title="Nuestros servicios" active="servicios">
+  <!-- PORTADA -->
+  <section class="relative overflow-hidden bg-sand px-6 py-16 lg:px-10">
+    <Abanico class="fan-pattern -bottom-20 right-[-40px] hidden w-[560px] opacity-45 md:block" color="#c9a45c" />
+    <div class="relative mx-auto flex max-w-7xl flex-col gap-4">
+      <nav aria-label="Ruta" class="flex gap-2 text-[13.5px] text-slate"><a href="/b" class="hover:text-navy">Inicio</a><span>/</span><span class="font-bold text-navy">Nuestros servicios</span></nav>
+      <h1 class="max-w-3xl text-4xl font-extrabold leading-[1.06] tracking-tight text-navy sm:text-5xl">Seguros para personas y empresas</h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-slate">Elige una categoría y conoce cada póliza. Te asesoramos para elegir la adecuada y te acompañamos si necesitas reclamar.</p>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section id="catalogo" class="scroll-mt-40 bg-white px-6 py-20 lg:px-10">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[4fr_8fr]">
+      <!-- Menú lateral -->
+      <aside class="flex flex-col gap-6 lg:sticky lg:top-36 lg:self-start">
+        <div class="flex flex-col gap-2">
+          <span class="text-[12.5px] font-bold uppercase tracking-[0.12em] text-gold-ink">Para personas</span>
+          {categoriasPersonas.map((c) => (
+            <button type="button" data-cat-btn={c.id} class="cat-btn flex items-center gap-3 rounded-2xl border border-[#e3ded3] bg-white px-4 py-3.5 text-left text-[16px] font-bold text-navy">
+              <span class="cat-num flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sand text-[13px] font-extrabold text-gold-ink"><Icono name={c.icono} class="h-4 w-4" /></span>{c.nombre}
+            </button>
+          ))}
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="text-[12.5px] font-bold uppercase tracking-[0.12em] text-gold-ink">Para empresas</span>
+          {categoriasEmpresas.map((c) => (
+            <button type="button" data-cat-btn={c.id} class="cat-btn flex items-center gap-3 rounded-2xl border border-[#e3ded3] bg-white px-4 py-3.5 text-left text-[16px] font-bold text-navy">
+              <span class="cat-num flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sand text-[13px] font-extrabold text-gold-ink"><Icono name={c.icono} class="h-4 w-4" /></span>{c.nombre}
+            </button>
+          ))}
+        </div>
+        <div class="flex flex-col gap-2.5 rounded-3xl bg-navy p-6 text-white">
+          <span class="text-4xl font-extrabold tracking-tight text-gold-soft">100%</span>
+          <span class="text-[14.5px] leading-snug text-[#c8d3e3]">de tu póliza puede ser financiada con nuestros aliados CrediSeguro y Finesa.</span>
+        </div>
+      </aside>
+
+      <!-- Paneles -->
+      <div>
+        {categorias.map((c, ci) => (
+          <div data-cat-panel={c.id} class:list={["flex-col gap-7", ci === 0 ? "flex" : "hidden"]}>
+            <div class="flex flex-col justify-between gap-5 rounded-3xl bg-sand p-8 sm:flex-row sm:items-end sm:p-9">
+              <div class="flex flex-col gap-2.5">
+                <span class="text-[13px] font-bold uppercase tracking-[0.1em] text-gold-ink">{c.segmento === "personas" ? "Personas" : "Empresas"}</span>
+                <h2 class="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">{c.titulo}</h2>
+                <p class="max-w-xl text-base leading-relaxed text-slate">{c.intro}</p>
+              </div>
+              <a href="/b/contacto" class="inline-flex h-12 shrink-0 items-center rounded-xl bg-navy px-6 font-bold text-white transition-colors hover:bg-navy-2">Cotizar</a>
+            </div>
+
+            <div class="flex flex-col border-t border-[#e3ded3]">
+              {c.polizas.map((p, pi) => (
+                <div class="border-b border-[#e3ded3]">
+                  <button type="button" data-acc aria-expanded={pi === 0 ? "true" : "false"} class="flex w-full items-center justify-between gap-4 py-5 text-left text-[18px] font-bold text-navy">
+                    {p.titulo}
+                    <span class="acc-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d9d3c5] text-gold-ink">
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14" /><path class="acc-v" d="M12 5v14" /></svg>
+                    </span>
+                  </button>
+                  <div data-acc-body class:list={["overflow-hidden pr-2 sm:pr-14", pi === 0 ? "" : "hidden"]}>
+                    <div class="flex flex-col gap-3.5 pb-6">
+                      <p class="text-[15.5px] leading-relaxed text-slate">{p.descripcion}</p>
+                      {p.detalles && (
+                        <ul class="grid gap-2.5 sm:grid-cols-2">
+                          {p.detalles.map((d) => (
+                            <li class="flex items-center gap-2.5 text-[15px] text-carbon"><Icono name="check" class="h-4 w-4 shrink-0 text-gold-ink" />{d}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ALIADOS -->
+  <section class="border-t border-[#e3ded3] bg-white px-6 py-16 lg:px-10">
+    <Aliados theme="b" />
+  </section>
+
+  <LlamadaB />
+</LayoutB>
+
+<script>
+  // Cambio de categoría
+  const catBtns = document.querySelectorAll<HTMLButtonElement>("[data-cat-btn]");
+  const catPanels = document.querySelectorAll<HTMLElement>("[data-cat-panel]");
+  const activarCategoria = (id: string) => {
+    catBtns.forEach((b) => {
+      const on = b.dataset.catBtn === id;
+      b.classList.toggle("border-navy", on);
+      b.classList.toggle("bg-navy", on);
+      // texto dorado cuando está seleccionado (antes desaparecía sobre el fondo navy)
+      b.classList.toggle("text-gold-soft", on);
+      b.classList.toggle("text-navy", !on);
+      b.setAttribute("aria-pressed", String(on));
+      const num = b.querySelector<HTMLElement>(".cat-num");
+      num?.classList.toggle("bg-gold-2", on);
+      num?.classList.toggle("text-navy", on);
+      num?.classList.toggle("bg-sand", !on);
+      num?.classList.toggle("text-gold-ink", !on);
+    });
+    catPanels.forEach((p) => {
+      const on = p.dataset.catPanel === id;
+      p.classList.toggle("hidden", !on);
+      p.classList.toggle("flex", on);
+    });
+  };
+  catBtns.forEach((b) => b.addEventListener("click", () => activarCategoria(b.dataset.catBtn!)));
+  const primera = catBtns[0]?.dataset.catBtn;
+  if (primera) activarCategoria(primera);
+
+  // Abrir el segmento/categoría indicado por el enlace (#personas, #empresas o #<categoria>)
+  const ids = Array.from(catBtns).map((b) => b.dataset.catBtn);
+  const desdeHash = () => {
+    const h = decodeURIComponent(location.hash.replace("#", ""));
+    if (!h) return;
+    let destino: string | undefined;
+    if (h === "personas") destino = "autos";
+    else if (h === "empresas") destino = "generales";
+    else if (ids.includes(h)) destino = h;
+    if (destino) {
+      activarCategoria(destino);
+      document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+  desdeHash();
+  window.addEventListener("hashchange", desdeHash);
+
+  // Acordeón
+  document.querySelectorAll<HTMLButtonElement>("[data-acc]").forEach((btn) => {
+    // Estado inicial del icono (+/−) según aria-expanded
+    const abiertoInicial = btn.getAttribute("aria-expanded") === "true";
+    btn.querySelector<SVGElement>(".acc-v")?.classList.toggle("hidden", abiertoInicial);
+    btn.addEventListener("click", () => {
+      const abierto = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!abierto));
+      const body = btn.nextElementSibling as HTMLElement | null;
+      body?.classList.toggle("hidden", abierto);
+      const v = btn.querySelector<SVGElement>(".acc-v");
+      v?.classList.toggle("hidden", !abierto);
+    });
+  });
+</script>

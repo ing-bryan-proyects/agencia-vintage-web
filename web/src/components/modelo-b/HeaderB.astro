@@ -1,0 +1,98 @@
+---
+import Icono from "@/components/Icono.astro";
+import { contacto, telUrl, whatsappUrl } from "@/data/contacto";
+
+interface Props {
+  active?: "inicio" | "quienes" | "servicios" | "contacto";
+}
+const { active } = Astro.props;
+
+const links = [
+  { id: "inicio", label: "Inicio", href: "/b" },
+  { id: "quienes", label: "Quiénes somos", href: "/b/quienes-somos" },
+  { id: "servicios", label: "Nuestros servicios", href: "/b/servicios" },
+  { id: "contacto", label: "Contacto", href: "/b/contacto" },
+];
+---
+<header class="sticky top-0 z-40 font-sans">
+  <!-- Barra superior -->
+  <div class="hidden bg-navy text-[#c8d3e3] md:block">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 text-[13px] lg:px-10">
+      <nav class="flex items-center gap-1" aria-label="Segmentos">
+        <a href="/b/servicios#personas" class="inline-flex h-7 items-center rounded-full px-3.5 font-semibold text-white hover:bg-white/10">Personas</a>
+        <a href="/b/servicios#empresas" class="inline-flex h-7 items-center rounded-full px-3.5 font-semibold text-white hover:bg-white/10">Empresas</a>
+      </nav>
+      <div class="flex items-center gap-6">
+        <a href={telUrl} class="font-semibold text-white hover:text-gold-soft">Línea {contacto.telefonos[0]}</a>
+        <a href="/b/contacto" class="flex items-center gap-1.5 font-bold text-gold-soft hover:text-white"><Icono name="escudo" class="h-3.5 w-3.5" />Reporta un siniestro</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra principal -->
+  <div class="border-b border-[#e3ded3] bg-white">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5 lg:px-10" aria-label="Principal">
+      <a href="/b" class="flex items-center" aria-label={`${contacto.nombre} — inicio`}>
+        <img src="/images/logo-oscuro.png" alt={contacto.nombre} width="240" height="66" class="h-11 w-auto" />
+      </a>
+
+      <div class="hidden items-center gap-2 text-[15px] font-semibold lg:flex">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            aria-current={active === l.id ? "page" : undefined}
+            class:list={[
+              "inline-flex h-10 items-center rounded-lg px-4 transition-colors",
+              active === l.id ? "bg-sand text-navy" : "text-slate hover:bg-sand/60 hover:text-navy",
+            ]}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a href={whatsappUrl} aria-label="WhatsApp" class="ml-2 inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#e3ded3] text-navy transition-colors hover:border-navy">
+          <Icono name="whatsapp" class="h-5 w-5" />
+        </a>
+        <a href="/b/contacto" class="inline-flex h-11 items-center rounded-xl bg-navy px-6 font-bold text-white transition-colors hover:bg-navy-2">Cotizar ahora</a>
+      </div>
+
+      <button
+        type="button"
+        id="menu-toggle-b"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[#e3ded3] text-navy lg:hidden"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu-movil-b"
+      >
+        <Icono name="menu" class="h-6 w-6" />
+      </button>
+    </nav>
+
+    <div id="menu-movil-b" class="hidden border-t border-[#e3ded3] bg-white px-6 pb-6 lg:hidden">
+      <div class="flex flex-col gap-1 py-3 text-[15px]">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            aria-current={active === l.id ? "page" : undefined}
+            class:list={[
+              "rounded-lg px-3 py-3 font-semibold",
+              active === l.id ? "bg-sand text-navy" : "text-slate hover:bg-sand/60",
+            ]}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a href="/b/contacto" class="mt-2 inline-flex h-12 items-center justify-center rounded-xl bg-navy px-6 font-bold text-white">Cotizar ahora</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle-b");
+  const menu = document.getElementById("menu-movil-b");
+  toggle?.addEventListener("click", () => {
+    const abierto = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(abierto));
+    toggle.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+/**
+ * Motivo decorativo del logo (abanico art déco), como fondo sutil.
+ */
+interface Props {
+  class?: string;
+  color?: string;
+}
+const { class: className = "", color = "currentColor" } = Astro.props;
+---
+<svg
+  class={className}
+  viewBox="0 0 400 220"
+  fill="none"
+  stroke={color}
+  stroke-width="0.7"
+  aria-hidden="true"
+>
+  <path d="M20 200 A180 180 0 0 1 380 200" />
+  <path d="M60 200 A140 140 0 0 1 340 200" />
+  <path d="M100 200 A100 100 0 0 1 300 200" />
+  <path d="M140 200 A60 60 0 0 1 260 200" />
+  <path d="M200 200 L44.1 110" />
+  <path d="M200 200 L110 44.1" />
+  <path d="M200 200 L200 20" />
+  <path d="M200 200 L290 44.1" />
+  <path d="M200 200 L355.9 110" />
+</svg>

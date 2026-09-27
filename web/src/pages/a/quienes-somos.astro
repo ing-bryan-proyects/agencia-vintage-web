@@ -1,0 +1,134 @@
+---
+import LayoutA from "@/layouts/LayoutA.astro";
+import Icono from "@/components/Icono.astro";
+import Abanico from "@/components/Abanico.astro";
+import LogosClientes from "@/components/LogosClientes.astro";
+import CtaA from "@/components/modelo-a/CtaA.astro";
+import { compromiso, diferencial, diferenciales, publicoObjetivo } from "@/data/agencia";
+---
+<LayoutA title="Quiénes somos" active="quienes">
+  <!-- PORTADA -->
+  <section class="relative overflow-hidden bg-ink px-6 py-20 lg:px-10">
+    <Abanico class="fan-pattern -bottom-28 left-[-200px] hidden w-[700px] opacity-10 md:block" color="#d9be86" />
+    <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
+      <div class="flex flex-col gap-6">
+        <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold">
+          <span class="h-px w-10 bg-gold"></span>Quiénes somos
+        </span>
+        <h1 class="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+          Una agencia que te acompaña <span class="text-gold">antes, durante y después</span> de cada reclamación
+        </h1>
+        <p class="max-w-2xl text-lg leading-relaxed text-cream/75">
+          Somos Agencia Vintage de Seguros LTDA: gestionamos y asesoramos para que tú, tu familia y tu negocio estén protegidos por una amplia cobertura de seguros.
+        </p>
+      </div>
+      <div class="mx-auto w-full max-w-sm">
+        <div class="rounded-t-[200px] rounded-b-2xl border-2 border-gold p-3">
+          <div class="aspect-[5/6] overflow-hidden rounded-t-[190px] rounded-b-xl bg-navy">
+            <img src="/images/fotos/reunion.jpg" alt="Equipo de Agencia Vintage asesorando" class="h-full w-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTRA AGENCIA -->
+  <section class="bg-cream-2 px-6 py-24 lg:px-10">
+    <div class="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+      <div class="flex flex-col gap-5">
+        <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold-ink">
+          <span class="h-px w-10 bg-gold-ink"></span>Nuestra agencia
+        </span>
+        <h2 class="font-display text-4xl font-bold leading-tight text-ink">Servicio especializado de asesoría y colocación de seguros</h2>
+        <p class="text-[17px] leading-relaxed text-carbon">Acompañamos a personas, familias y empresas en la elección de las pólizas que realmente necesitan: seguros generales, autos y responsabilidad civil, todo riesgo para empresas, transportes y seguros de vida.</p>
+        <p class="text-[17px] leading-relaxed text-carbon">Trabajamos de la mano de aseguradoras líderes del país y de aliados financieros que nos permiten financiar hasta el 100% de tu póliza. Y cuando ocurre un siniestro, seguimos contigo durante todo el proceso de reclamación.</p>
+      </div>
+      <div class="flex flex-col gap-5">
+        <article class="flex flex-col gap-3 rounded-3xl bg-ink p-9 text-white">
+          <span class="flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-gold"><Icono name="escudo" class="h-5 w-5" />Nuestro compromiso</span>
+          <p class="font-display text-xl leading-relaxed text-[#f3eee3] sm:text-2xl">{compromiso}</p>
+        </article>
+        <article class="flex flex-col gap-3 rounded-3xl bg-navy p-9 text-white">
+          <span class="flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-gold"><Icono name="chat" class="h-5 w-5" />Nuestro diferencial</span>
+          <p class="font-display text-xl leading-relaxed text-[#f3eee3] sm:text-2xl">{diferencial}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LO QUE NOS DIFERENCIA -->
+  <section class="bg-cream px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-12">
+      <div class="flex flex-col gap-4">
+        <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold-ink">
+          <span class="h-px w-10 bg-gold-ink"></span>Lo que nos diferencia
+        </span>
+        <h2 class="font-display text-4xl font-bold text-ink sm:text-5xl">Más que vender una póliza</h2>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {diferenciales.map((d) => (
+          <article class="flex flex-col gap-3.5 rounded-3xl border border-[#e6dcc8] bg-cream-2 p-8">
+            <span class="flex h-14 w-14 items-center justify-center rounded-full bg-ink text-gold"><Icono name={d.icono} class="h-6 w-6" /></span>
+            <h3 class="mt-1 font-display text-[23px] font-bold leading-tight text-ink">{d.titulo}</h3>
+            <p class="text-[15px] leading-relaxed text-mute">{d.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FASECOLDA -->
+  <section class="bg-navy px-6 py-16 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center gap-8 md:flex-row">
+      <span class="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-gold text-gold"><Icono name="escudo" class="h-11 w-11" /></span>
+      <div class="flex flex-1 flex-col gap-2.5 text-center md:text-left">
+        <h2 class="font-display text-3xl font-bold text-white">Agentes de seguros certificados</h2>
+        <p class="max-w-2xl text-[16.5px] leading-relaxed text-[#c3cedc]">Nuestros agentes están respaldados por la certificación otorgada por Fasecolda, la Federación de Aseguradores Colombianos.</p>
+      </div>
+      <div class="flex h-28 w-64 shrink-0 items-center justify-center rounded-2xl bg-white p-6">
+        <img src="/images/aliados/fasecolda-navy.png" alt="Fasecolda — Federación de Aseguradores Colombianos" class="max-h-16 w-auto max-w-full object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- A QUIÉN SERVIMOS -->
+  <section class="bg-cream-2 px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-12">
+      <div class="flex flex-col items-end justify-between gap-8 md:flex-row">
+        <div class="flex flex-col gap-4">
+          <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold-ink">
+            <span class="h-px w-10 bg-gold-ink"></span>A quién servimos
+          </span>
+          <h2 class="font-display text-4xl font-bold text-ink sm:text-5xl">Protección a la medida</h2>
+        </div>
+        <a href="/a/servicios" class="inline-flex h-13 shrink-0 items-center gap-2.5 rounded-full border border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-white">
+          Ver nuestros servicios <Icono name="flecha" class="h-4 w-4" />
+        </a>
+      </div>
+      <div class="grid gap-5 md:grid-cols-3">
+        {publicoObjetivo.map((p) => (
+          <article class="flex flex-col gap-3.5 rounded-3xl bg-cream p-9">
+            <span class="font-display text-4xl leading-none text-gold-ink">{p.numero}</span>
+            <h3 class="font-display text-2xl font-bold text-ink">{p.titulo}</h3>
+            <p class="text-[15px] leading-relaxed text-mute">{p.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section class="bg-cream px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-11">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold-ink">
+          <span class="h-px w-10 bg-gold-ink"></span>Nuestros clientes
+        </span>
+        <h2 class="font-display text-4xl font-bold text-ink sm:text-5xl">Empresas que confían en nosotros</h2>
+      </div>
+      <LogosClientes theme="a" />
+    </div>
+  </section>
+
+  <CtaA titulo="Comprometidos con tu tranquilidad" texto="Conversemos sobre lo que quieres proteger." />
+</LayoutA>

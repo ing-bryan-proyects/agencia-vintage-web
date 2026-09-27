@@ -1,0 +1,34 @@
+---
+import { aseguradoras, financieras } from "@/data/aliados";
+
+interface Props {
+  theme?: "a" | "b";
+}
+const { theme = "b" } = Astro.props;
+const esA = theme === "a";
+const font = esA ? "font-body" : "font-sans";
+const titulo = esA ? "font-display text-2xl text-ink" : "text-xl font-extrabold text-navy";
+const tarjeta = "flex h-24 items-center justify-center rounded-2xl border border-black/10 bg-white p-4";
+---
+<div class:list={["mx-auto grid max-w-7xl gap-10 lg:grid-cols-[2fr_1fr]", font]}>
+  <div class="flex flex-col gap-5">
+    <h3 class={titulo}>Aseguradoras que confían en nosotros</h3>
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      {aseguradoras.map((a) => (
+        <div class={tarjeta}>
+          <img src={a.logo} alt={a.nombre} loading="lazy" decoding="async" class="max-h-14 w-auto max-w-[80%] object-contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="flex flex-col gap-5">
+    <h3 class={titulo}>Financiamos tu póliza</h3>
+    <div class="grid gap-3">
+      {financieras.map((f) => (
+        <div class={tarjeta}>
+          <img src={f.logo} alt={f.nombre} loading="lazy" decoding="async" class="max-h-12 w-auto max-w-[70%] object-contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

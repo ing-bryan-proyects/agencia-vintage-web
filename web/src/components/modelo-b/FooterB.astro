@@ -1,0 +1,51 @@
+---
+import { contacto, telUrl, correoUrl } from "@/data/contacto";
+
+const seguros = [
+  { label: "Seguros generales", href: "/b/servicios#generales" },
+  { label: "Autos y RC", href: "/b/servicios#autos" },
+  { label: "Todo riesgo empresas", href: "/b/servicios#empresas" },
+  { label: "Transportes", href: "/b/servicios#transportes" },
+  { label: "Vida y accidentes", href: "/b/servicios#vida" },
+];
+const agencia = [
+  { label: "Inicio", href: "/b" },
+  { label: "Quiénes somos", href: "/b/quienes-somos" },
+  { label: "Contacto", href: "/b/contacto" },
+  { label: "Reporta un siniestro", href: "/b/contacto" },
+];
+const anio = new Date().getFullYear();
+---
+<footer class="bg-navy font-sans text-[#a9b6ca]">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1.3fr_1fr_1.5fr]">
+      <div class="flex flex-col gap-5">
+        <img src="/images/logo-claro.png" alt={contacto.nombre} width="240" height="66" class="h-15 w-auto self-start" />
+        <p class="max-w-xs text-sm leading-relaxed">Servicio especializado de asesoría y colocación de seguros, con especial experiencia en el sector transporte.</p>
+      </div>
+      <nav aria-label="Seguros" class="flex flex-col gap-3 text-sm">
+        <span class="text-xs font-bold uppercase tracking-[0.12em] text-gold-soft">Nuestros seguros</span>
+        {seguros.map((l) => <a href={l.href} class="text-white hover:text-gold-soft">{l.label}</a>)}
+      </nav>
+      <nav aria-label="La agencia" class="flex flex-col gap-3 text-sm">
+        <span class="text-xs font-bold uppercase tracking-[0.12em] text-gold-soft">La agencia</span>
+        {agencia.map((l) => <a href={l.href} class="text-white hover:text-gold-soft">{l.label}</a>)}
+      </nav>
+      <div class="flex flex-col gap-3 text-sm">
+        <span class="text-xs font-bold uppercase tracking-[0.12em] text-gold-soft">Contacto</span>
+        {contacto.telefonos.map((t) => <a href={telUrl} class="text-white hover:text-gold-soft">{t}</a>)}
+        <a href={correoUrl} class="break-all text-white hover:text-gold-soft">{contacto.correo}</a>
+        <a href={contacto.webUrl} class="text-white hover:text-gold-soft">{contacto.web}</a>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-3 border-t border-[#1e3a5f] pt-6 text-[13px] sm:flex-row sm:items-center sm:justify-between">
+      <span>© {anio} {contacto.nombre}. Todos los derechos reservados.</span>
+      <span class="flex flex-wrap items-center gap-3">
+        <a href="/b/contacto" class="hover:text-gold-soft">Política de tratamiento de datos</a>
+        <span class="text-white/30">·</span>
+        <span>Desarrollado por <a href="https://bryan.dev" class="font-semibold text-gold-soft hover:text-white">bryan.dev</a></span>
+      </span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Logos de clientes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1248px; height: 296px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; font-family: Montserrat, system-ui, sans-serif">
+<sc-for list="{{logos}}" as="logo" hint-placeholder-count="12">
+<div style="height: 140px; box-sizing: border-box; padding: 16px; border-radius: 18px; background: #FFFFFF; border: 1px solid {{borde}}; display: flex; align-items: center; justify-content: center">
+<img src="{{logo.src}}" alt="{{logo.alt}}" style="max-width: 100%; max-height: 104px; object-fit: contain; display: block">
+</div>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"borde":{"editor":"color","default":"#E6DCC8"},"$preview":{"width":1248,"height":296}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      borde: this.props.borde ?? '#E6DCC8',
+      logos: [
+        { src: '/_blob/76a40f4cf3af206ae7756910cffbf99b', alt: 'Transportes Velosa' },
+        { src: '/_blob/545831167d5acae070ddd843ccddd53f', alt: 'Transporte Riaño C. (TRC)' },
+        { src: '/_blob/1ec1485fe709081d53069748aad9b794', alt: 'Transportes Riaño S.A.S.' },
+        { src: '/_blob/8b9cdfe585bf64ea5cef2253aed3a8f2', alt: 'ZE & Asesoría Integral' },
+        { src: '/_blob/ccc6229093564853b1e82d5f99d9bd02', alt: 'Coopasovoltank' },
+        { src: '/_blob/2f335bbca6cc33ce81891e5cd205b6b6', alt: 'Trans InverLog' },
+        { src: '/_blob/3b30e491c9b61e81271a6f0334343c16', alt: 'Satelvision' },
+        { src: '/_blob/2f092f23f300082c0bb07ec7ee61da38', alt: 'VIDA Seguridad y Salud en el Trabajo' },
+        { src: '/_blob/e03508a902bb417e997b819f29dd850b', alt: 'Alex Mendivelso, abogado' },
+        { src: '/_blob/b12527d511a16ac95c955e4441a01504', alt: 'Julio Velosa, abogado' },
+        { src: '/_blob/8e083f1aa666539f4d4acc6e7deb94e4', alt: 'Vanity Shop' },
+        { src: '/_blob/b12c5c56e5d739f4c044d0afd8372f39', alt: 'Cliente de la agencia' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

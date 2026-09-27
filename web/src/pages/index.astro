@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Abanico from "@/components/Abanico.astro";
+import Icono from "@/components/Icono.astro";
+import { contacto } from "@/data/contacto";
+
+const modelos = [
+  {
+    href: "/a",
+    etiqueta: "Modelo A",
+    nombre: "Clásico dorado",
+    desc: "Carbón, dorado y azul marino. Títulos con serifa y el abanico art déco del logo. Elegante y tradicional.",
+    clasesCard: "bg-ink text-cream",
+    paleta: ["#18181a", "#d9be86", "#0b2545", "#f6f2ea"],
+  },
+  {
+    href: "/b",
+    etiqueta: "Modelo B",
+    nombre: "Corporativo moderno",
+    desc: "Fondo claro, azul marino y acentos dorados. Tipografía moderna, tarjetas y componentes ágiles. Cercano y profesional.",
+    clasesCard: "bg-white text-navy border border-[#e3ded3]",
+    paleta: ["#0b2545", "#c9a45c", "#f4f1ea", "#ffffff"],
+  },
+];
+---
+<BaseLayout title="Modelos de diseño" description="Presentación de dos modelos de diseño para la página web de Agencia Vintage de Seguros LTDA." fonts="all" bodyClass="bg-navy font-sans text-white">
+  <main id="contenido" class="relative min-h-screen overflow-hidden">
+    <Abanico class="fan-pattern -top-20 right-[-120px] w-[620px] opacity-15" color="#c9a45c" />
+    <Abanico class="fan-pattern bottom-[-160px] left-[-160px] w-[620px] rotate-180 opacity-10" color="#c9a45c" />
+
+    <div class="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16 lg:py-24">
+      <header class="flex flex-col items-center gap-6 text-center">
+        <img src="/images/logo-claro.png" alt={contacto.nombre} width="300" height="82" class="h-20 w-auto" />
+        <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold-soft">
+          <span class="h-px w-10 bg-gold-soft"></span>Propuesta de diseño web<span class="h-px w-10 bg-gold-soft"></span>
+        </span>
+        <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight sm:text-5xl">Dos modelos para tu página web</h1>
+        <p class="max-w-xl text-lg leading-relaxed text-[#c8d3e3]">
+          Explora cada propuesta completa y navegable. Al final decidiremos juntos cuál será el diseño definitivo.
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {modelos.map((m) => (
+          <a href={m.href} class:list={["group flex flex-col gap-6 rounded-[28px] p-8 transition-transform hover:-translate-y-1 sm:p-10", m.clasesCard]}>
+            <div class="flex items-center justify-between">
+              <div class="flex flex-col gap-1">
+                <span class="text-[13px] font-bold uppercase tracking-[0.14em] text-gold-2">{m.etiqueta}</span>
+                <span class="font-display text-3xl font-bold">{m.nombre}</span>
+              </div>
+              <span class="flex h-12 w-12 items-center justify-center rounded-full border border-current opacity-70 transition-transform group-hover:translate-x-1"><Icono name="flecha" class="h-5 w-5" /></span>
+            </div>
+            <p class="text-[15.5px] leading-relaxed opacity-80">{m.desc}</p>
+            <div class="mt-auto flex items-center gap-3">
+              <div class="flex gap-1.5">
+                {m.paleta.map((c) => <span class="h-7 w-7 rounded-full border border-black/10" style={`background:${c}`}></span>)}
+              </div>
+              <span class="ml-auto text-[15px] font-bold">Ver propuesta →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <footer class="flex flex-col items-center gap-2 pt-4 text-center text-[13px]" style="color:#93a3ba">
+        <span>{contacto.nombre}</span>
+        <span>Desarrollado por <a href="https://bryan.dev" class="font-semibold text-gold-soft hover:text-white">bryan.dev</a></span>
+      </footer>
+    </div>
+  </main>
+</BaseLayout>

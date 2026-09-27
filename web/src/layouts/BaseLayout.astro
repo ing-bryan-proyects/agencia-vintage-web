@@ -1,0 +1,110 @@
+---
+import "@/styles/global.css";
+import { contacto } from "@/data/contacto";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Conjunto de fuentes: "a" (Philosopher+Montserrat), "b" (Plus Jakarta Sans). */
+  fonts?: "a" | "b" | "all";
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description = "Servicio especializado de asesoría y colocación de seguros para personas y empresas, con especial experiencia en el sector transporte.",
+  fonts = "all",
+  bodyClass = "",
+} = Astro.props;
+
+const fullTitle = `${title} · ${contacto.nombre}`;
+
+const fontHref: Record<string, string> = {
+  a: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Philosopher:wght@400;700&display=swap",
+  b: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+  all: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Philosopher:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/images/logo-oscuro.png" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b2545" />
+
+    <!-- Open Graph / redes sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={contacto.nombre} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_CO" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontHref[fonts]} />
+  </head>
+  <body class={bodyClass}>
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white"
+    >
+      Saltar al contenido
+    </a>
+    <slot />
+
+    <script>
+      // Animación de aparición al entrar en pantalla
+      const animables = document.querySelectorAll(".reveal");
+      if (animables.length && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entradas) => {
+            entradas.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        animables.forEach((el) => io.observe(el));
+      } else {
+        animables.forEach((el) => el.classList.add("is-visible"));
+      }
+
+      // Envío de formularios por correo (abre el gestor de correo con los datos)
+      const EMAIL = "agenciavintagedeseguros@gmail.com";
+      const etiqueta = (el) => {
+        const lab = el.closest("label");
+        if (lab) return lab.textContent.trim().split("\n")[0].trim();
+        return el.name;
+      };
+      document.querySelectorAll("form[data-mailto]").forEach((form) => {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const asunto = form.getAttribute("data-asunto") || "Mensaje desde el sitio web";
+          const dest = form.getAttribute("data-mailto") || EMAIL;
+          const lineas = [];
+          form.querySelectorAll("input, select, textarea").forEach((el) => {
+            if (!el.name) return;
+            if (el.type === "checkbox") {
+              lineas.push(etiqueta(el) + ": " + (el.checked ? "Sí" : "No"));
+            } else if (el.value) {
+              lineas.push(etiqueta(el) + ": " + el.value);
+            }
+          });
+          const cuerpo = lineas.join("\n");
+          window.location.href =
+            "mailto:" + dest + "?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent(cuerpo);
+        });
+      });
+    </script>
+  </body>
+</html>

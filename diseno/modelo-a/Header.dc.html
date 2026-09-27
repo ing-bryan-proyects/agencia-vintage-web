@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Encabezado — Modelo A</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1440px; height: 136px; display: flex; flex-direction: column; font-family: Montserrat, system-ui, sans-serif; color: #E9E4D8">
+<div style="height: 40px; flex-shrink: 0; box-sizing: border-box; padding: 0 96px; background: #0F0F10; display: flex; align-items: center; justify-content: space-between; font-size: 13px">
+<nav aria-label="Segmentos" style="display: flex; gap: 22px">
+<a href="Servicios.dc.html" style="color: #D9BE86; text-decoration: none; font-weight: 600">Personas</a>
+<a href="Servicios.dc.html" style="color: #C9C4B8; text-decoration: none">Empresas</a>
+<span style="color: #6E6A60">Agentes certificados por Fasecolda</span>
+</nav>
+<div style="display: flex; gap: 24px; align-items: center">
+<a href="tel:+573025244339" style="color: #C9C4B8; text-decoration: none">+57 302 524 4339</a>
+<a href="https://wa.me/573025244339" style="color: #C9C4B8; text-decoration: none">WhatsApp</a>
+<a href="Contacto.dc.html" style="color: #D9BE86; text-decoration: none; font-weight: 600">Reporta un siniestro</a>
+</div>
+</div>
+<header style="height: 96px; flex-shrink: 0; box-sizing: border-box; padding: 0 96px; background: #18181A; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2E2C28">
+<a href="Main.dc.html" aria-label="Agencia Vintage de Seguros — inicio" style="display: flex; align-items: center">
+<img src="/_blob/9aac97bb76c1374ade40a913a88a4c71" alt="Agencia Vintage de Seguros LTDA" style="height: 56px; width: auto; display: block">
+</a>
+<nav aria-label="Principal" style="display: flex; align-items: center; gap: 36px; font-size: 15px; font-weight: 500">
+<a href="Main.dc.html" style="{{sInicio}}">Inicio</a>
+<a href="QuienesSomos.dc.html" style="{{sQuienes}}">Quiénes somos</a>
+<a href="Servicios.dc.html" style="{{sServicios}}">Nuestros servicios</a>
+<a href="Contacto.dc.html" style="{{sContacto}}">Contacto</a>
+<a href="Contacto.dc.html" style="display: inline-flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 999px; background: #D9BE86; color: #18181A; text-decoration: none; font-weight: 600">Cotiza tu seguro</a>
+</nav>
+</header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["inicio","quienes","servicios","contacto"],"default":"inicio"},"$preview":{"width":1440,"height":136}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'inicio';
+    const on = 'color: #D9BE86; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #D9BE86;';
+    const off = 'color: #E9E4D8; text-decoration: none; padding: 8px 0; border-bottom: 1px solid transparent;';
+    return {
+      sInicio: a === 'inicio' ? on : off,
+      sQuienes: a === 'quienes' ? on : off,
+      sServicios: a === 'servicios' ? on : off,
+      sContacto: a === 'contacto' ? on : off
+    };
+  }
+}
+</script>
+</body>
+</html>

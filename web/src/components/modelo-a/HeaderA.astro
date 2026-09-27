@@ -1,0 +1,109 @@
+---
+import Icono from "@/components/Icono.astro";
+import { contacto, telUrl, whatsappUrl } from "@/data/contacto";
+
+interface Props {
+  active?: "inicio" | "quienes" | "servicios" | "contacto";
+}
+const { active } = Astro.props;
+
+const links = [
+  { id: "inicio", label: "Inicio", href: "/a" },
+  { id: "quienes", label: "Quiénes somos", href: "/a/quienes-somos" },
+  { id: "servicios", label: "Nuestros servicios", href: "/a/servicios" },
+  { id: "contacto", label: "Contacto", href: "/a/contacto" },
+];
+---
+<header class="sticky top-0 z-40 font-body">
+  <!-- Barra superior -->
+  <div class="hidden bg-[#0f0f10] text-cream/80 md:block">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[13px] lg:px-10">
+      <div class="flex items-center gap-5">
+        <a href="/a/servicios" class="font-semibold text-gold hover:text-gold-soft">Personas</a>
+        <a href="/a/servicios" class="hover:text-white">Empresas</a>
+        <span class="text-cream/40">Agentes certificados por Fasecolda</span>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href={telUrl} class="hover:text-white">{contacto.telefonos[0]}</a>
+        <a href={whatsappUrl} class="hover:text-white">WhatsApp</a>
+        <a href="/a/contacto" class="font-semibold text-gold hover:text-gold-soft">Reporta un siniestro</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra principal -->
+  <div class="border-b border-white/10 bg-ink">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10" aria-label="Principal">
+      <a href="/a" class="flex items-center" aria-label={`${contacto.nombre} — inicio`}>
+        <img src="/images/logo-claro.png" alt={contacto.nombre} width="240" height="66" class="h-12 w-auto" />
+      </a>
+
+      <!-- Navegación escritorio -->
+      <div class="hidden items-center gap-8 text-[15px] font-medium lg:flex">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            aria-current={active === l.id ? "page" : undefined}
+            class:list={[
+              "border-b py-2 transition-colors",
+              active === l.id
+                ? "border-gold text-gold"
+                : "border-transparent text-cream hover:text-gold",
+            ]}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a
+          href="/a/contacto"
+          class="ml-2 inline-flex h-11 items-center rounded-full bg-gold px-6 font-semibold text-ink transition-colors hover:bg-gold-soft"
+        >
+          Cotiza tu seguro
+        </a>
+      </div>
+
+      <!-- Botón menú móvil -->
+      <button
+        type="button"
+        id="menu-toggle-a"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 text-cream lg:hidden"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu-movil-a"
+      >
+        <Icono name="menu" class="h-6 w-6" />
+      </button>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="menu-movil-a" class="hidden border-t border-white/10 bg-ink px-6 pb-6 lg:hidden">
+      <div class="flex flex-col gap-1 py-3 text-[15px]">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            aria-current={active === l.id ? "page" : undefined}
+            class:list={[
+              "rounded-lg px-3 py-3 font-medium",
+              active === l.id ? "bg-white/5 text-gold" : "text-cream hover:bg-white/5",
+            ]}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a href="/a/contacto" class="mt-2 inline-flex h-12 items-center justify-center rounded-full bg-gold px-6 font-semibold text-ink">
+          Cotiza tu seguro
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle-a");
+  const menu = document.getElementById("menu-movil-a");
+  toggle?.addEventListener("click", () => {
+    const abierto = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(abierto));
+    toggle.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+  });
+</script>

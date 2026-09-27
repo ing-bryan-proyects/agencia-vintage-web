@@ -1,0 +1,19 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import HeaderB from "@/components/modelo-b/HeaderB.astro";
+import FooterB from "@/components/modelo-b/FooterB.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: "inicio" | "quienes" | "servicios" | "contacto";
+}
+const { title, description, active } = Astro.props;
+---
+<BaseLayout title={title} description={description} fonts="b" bodyClass="bg-white font-sans text-carbon">
+  <HeaderB active={active} />
+  <main id="contenido">
+    <slot />
+  </main>
+  <FooterB />
+</BaseLayout>

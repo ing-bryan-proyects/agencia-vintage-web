@@ -1,0 +1,250 @@
+---
+import LayoutB from "@/layouts/LayoutB.astro";
+import Icono from "@/components/Icono.astro";
+import Abanico from "@/components/Abanico.astro";
+import LogosClientes from "@/components/LogosClientes.astro";
+import Aliados from "@/components/Aliados.astro";
+import LlamadaB from "@/components/modelo-b/LlamadaB.astro";
+import Compromiso from "@/components/Compromiso.astro";
+import { whatsappUrl } from "@/data/contacto";
+import { pasos } from "@/data/agencia";
+import { categorias } from "@/data/seguros";
+
+const chipsPersonas = ["Autos", "Motos", "SOAT", "Vida individual", "Vida deudores", "Accidentes personales"];
+const chipsEmpresas = ["Todo riesgo", "Responsabilidad civil", "Cumplimiento", "Transporte de mercancías", "Vida grupo", "Vehículos pesados"];
+
+const accesos = [
+  { titulo: "Cotiza tu seguro", texto: "Personas y empresas", icono: "documento", href: "/b/contacto", dark: false },
+  { titulo: "Reporta un siniestro", texto: "Te acompañamos", icono: "escudo", href: "/b/contacto", dark: false },
+  { titulo: "Financia tu póliza", texto: "Hasta el 100%", icono: "financiar", href: "/b/servicios", dark: false },
+  { titulo: "Habla con un asesor", texto: "Por WhatsApp", icono: "whatsapp", href: whatsappUrl, dark: true },
+];
+
+const fotos: Record<string, string> = {
+  generales: "/images/fotos/reunion.jpg",
+  autos: "/images/fotos/autos-rc.jpg",
+  empresas: "/images/fotos/obrero-conduce.jpg",
+  transportes: "/images/fotos/transportes.jpg",
+  vida: "/images/fotos/familia.jpg",
+};
+const resumen: Record<string, string[]> = {
+  generales: ["Propiedades y patrimonial", "Responsabilidad civil", "Microseguros", "Cumplimiento"],
+  autos: ["Autos y motos", "SOAT", "Utilitarios y pesados", "Transporte público (RCC y RCE)"],
+  empresas: ["Construcción o montaje", "Daño material", "Maquinaria y equipo", "Maquinaria amarilla"],
+  transportes: ["Póliza para generadores de carga", "Póliza automática de mercancías", "Póliza específica de mercancías"],
+  vida: ["Vida individual y deudores", "Vida grupo", "Accidentes personales y viajes", "Accidentes estudiantiles"],
+};
+---
+<LayoutB title="Inicio" active="inicio">
+  <!-- PORTADA -->
+  <section class="bg-sand px-6 pt-16 pb-24 lg:px-10">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+      <div class="flex flex-col gap-6">
+        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-[#e3ded3] bg-white px-3.5 py-2 text-[13px] font-bold text-navy">
+          <Icono name="escudo" class="h-4 w-4 text-gold-ink" />Comprometidos con tu tranquilidad y tu seguridad
+        </span>
+        <h1 class="text-4xl font-extrabold leading-[1.06] tracking-tight text-navy sm:text-5xl lg:text-6xl">
+          Protegemos a tu familia, tu patrimonio y <span class="text-gold-ink">tu empresa</span>
+        </h1>
+        <p class="max-w-xl text-lg leading-relaxed text-slate">
+          Gestionamos y asesoramos para que disfrutes de total tranquilidad, con las mejores aseguradoras del país y financiación de hasta el 100% de tu póliza.
+        </p>
+
+        <div class="flex flex-col gap-3.5">
+          <div role="tablist" aria-label="Tipo de cliente" class="flex w-fit gap-1 rounded-2xl border border-[#e3ded3] bg-white p-1">
+            <button type="button" role="tab" data-seg-btn="personas" aria-selected="true" class="seg-btn h-10 rounded-xl px-4 text-[14.5px] font-bold">Para ti y tu familia</button>
+            <button type="button" role="tab" data-seg-btn="empresas" aria-selected="false" class="seg-btn h-10 rounded-xl px-4 text-[14.5px] font-bold">Para tu empresa</button>
+          </div>
+          <div class="max-w-xl">
+            <div data-seg-panel="personas" class="flex flex-wrap gap-2">
+              {chipsPersonas.map((c) => (
+                <a href="/b/servicios" class="inline-flex items-center gap-2 rounded-full border border-[#e3ded3] bg-white px-4 py-2.5 text-[14.5px] font-semibold text-navy hover:border-navy">
+                  {c}<Icono name="flecha" class="h-3.5 w-3.5 text-gold-ink" />
+                </a>
+              ))}
+            </div>
+            <div data-seg-panel="empresas" class="hidden flex-wrap gap-2">
+              {chipsEmpresas.map((c) => (
+                <a href="/b/servicios" class="inline-flex items-center gap-2 rounded-full border border-[#e3ded3] bg-white px-4 py-2.5 text-[14.5px] font-semibold text-navy hover:border-navy">
+                  {c}<Icono name="flecha" class="h-3.5 w-3.5 text-gold-ink" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="group relative flex min-h-[400px] flex-col items-center justify-center gap-3 overflow-hidden rounded-[32px] bg-navy-2 text-sm text-[#9fb0c8] lg:min-h-[520px]">
+          <img src="/images/fotos/pareja-laptop.jpg" alt="Asesoría a clientes de Agencia Vintage" class="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent"></div>
+          <span class="absolute right-6 top-6 inline-flex items-center gap-2 rounded-full bg-gold-2 px-4 py-2 text-[13.5px] font-bold text-navy"><Icono name="check" class="h-4 w-4" />Acompañamiento en reclamaciones</span>
+        </div>
+        <div class="absolute -bottom-6 left-0 flex items-center gap-3.5 rounded-2xl bg-white px-5 py-4 shadow-brand">
+          <span class="text-4xl font-extrabold tracking-tight text-navy">100%</span>
+          <span class="text-[13.5px] leading-snug text-slate">de tu póliza<br />puede ser financiada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COTIZADOR -->
+  <section class="relative bg-white px-6 lg:px-10">
+    <div class="mx-auto max-w-7xl">
+      <form class="-mt-13 flex flex-col items-end gap-4 rounded-3xl bg-white p-5 pl-6 shadow-brand md:flex-row" method="post" action="#" aria-label="Solicita tu cotización" data-mailto="agenciavintagedeseguros@gmail.com" data-asunto="Solicitud de cotización desde el sitio web">
+        <div class="flex w-full shrink-0 flex-col gap-0.5 self-center md:w-52">
+          <span class="text-lg font-extrabold text-navy">Solicita tu cotización</span>
+          <span class="text-[13.5px] text-slate">Un asesor te contacta</span>
+        </div>
+        <label class="flex w-full flex-1 flex-col gap-1.5 text-[12.5px] font-bold text-slate">¿Qué quieres asegurar?
+          <select name="tipo" class="h-12 rounded-xl border border-[#d9d3c5] bg-white px-3.5 text-[15px] text-carbon">
+            <option>Mi vehículo</option><option>Mi empresa</option><option>Mi vida y mi familia</option><option>Mi carga o mercancía</option><option>Un contrato (cumplimiento)</option>
+          </select>
+        </label>
+        <label class="flex w-full flex-1 flex-col gap-1.5 text-[12.5px] font-bold text-slate">Nombre
+          <input type="text" name="nombre" placeholder="Tu nombre" class="h-12 rounded-xl border border-[#d9d3c5] px-3.5 text-[15px] text-carbon" />
+        </label>
+        <label class="flex w-full flex-1 flex-col gap-1.5 text-[12.5px] font-bold text-slate">Celular
+          <input type="tel" name="celular" placeholder="300 000 0000" class="h-12 rounded-xl border border-[#d9d3c5] px-3.5 text-[15px] text-carbon" />
+        </label>
+        <button type="submit" class="h-12 w-full rounded-xl bg-navy px-7 font-bold text-white transition-colors hover:bg-navy-2 md:w-auto">Cotizar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ACCESOS -->
+  <section class="bg-white px-6 pt-20 pb-10 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6">
+      <h2 class="text-2xl font-extrabold tracking-tight text-navy sm:text-3xl">Accede a lo que necesitas</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {accesos.map((a) => (
+          <a href={a.href} class:list={["flex items-center gap-4 rounded-2xl p-6 transition-colors", a.dark ? "bg-navy text-white hover:bg-navy-2" : "border border-[#e3ded3] text-navy hover:border-navy"]}>
+            <span class:list={["flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl", a.dark ? "bg-gold-2 text-navy" : "bg-sand text-gold-ink"]}><Icono name={a.icono} class="h-6 w-6" /></span>
+            <span class="flex flex-col gap-0.5">
+              <span class="text-[16.5px] font-extrabold">{a.titulo}</span>
+              <span class:list={["text-[13.5px]", a.dark ? "text-[#c8d3e3]" : "text-slate"]}>{a.texto}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="bg-white px-6 pt-16 pb-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-10">
+      <div class="flex flex-col items-end justify-between gap-6 md:flex-row">
+        <div class="flex flex-col gap-3">
+          <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-ink">Nuestros seguros</span>
+          <h2 class="text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl">Una póliza para cada necesidad</h2>
+        </div>
+        <a href="/b/servicios" class="inline-flex h-12 items-center gap-2 rounded-xl border border-navy px-5 font-bold text-navy transition-colors hover:bg-navy hover:text-white">Ver todos los seguros</a>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {categorias.map((c) => (
+          <article class="reveal group flex flex-col overflow-hidden rounded-[22px] border border-[#e3ded3] bg-white transition-shadow duration-300 hover:shadow-brand">
+            <div class="h-44 overflow-hidden bg-[#dce3ec]">
+              <img src={fotos[c.id]} alt={c.nombre} loading="lazy" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+            </div>
+            <div class="flex flex-1 flex-col gap-3.5 p-7">
+              <h3 class="text-[22px] font-extrabold tracking-tight text-navy">{c.nombre}</h3>
+              <ul class="flex flex-col gap-2.5 text-[15px] text-[#3a4252]">
+                {resumen[c.id].map((it) => (
+                  <li class="flex items-center gap-2.5"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-2"></span>{it}</li>
+                ))}
+              </ul>
+              <a href="/b/servicios" class="mt-auto pt-1.5 font-bold text-navy hover:text-gold-ink">Saber más →</a>
+            </div>
+          </article>
+        ))}
+        <article class="relative flex flex-col gap-4 overflow-hidden rounded-[22px] bg-navy p-9 text-white">
+          <Abanico class="fan-pattern -bottom-10 right-[-60px] w-[300px] opacity-30" color="#c9a45c" />
+          <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-soft">Asesoría personalizada</span>
+          <h3 class="text-3xl font-extrabold leading-tight tracking-tight">¿No sabes qué póliza necesitas?</h3>
+          <p class="text-[15.5px] leading-relaxed text-[#c8d3e3]">Cuéntanos qué quieres proteger y te recomendamos la mejor opción entre nuestras aseguradoras aliadas.</p>
+          <a href={whatsappUrl} class="relative mt-auto inline-flex h-12 w-fit items-center rounded-xl bg-gold-2 px-6 font-extrabold text-navy transition-colors hover:bg-gold-soft">Habla con un asesor</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="bg-sand px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-12">
+      <div class="flex flex-col items-center gap-3 text-center">
+        <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-ink">Así de fácil</span>
+        <h2 class="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">Asegúrate en 4 pasos</h2>
+      </div>
+      <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {pasos.map((p, i) => (
+          <li class="flex flex-col gap-3 rounded-2xl bg-white p-7">
+            <span class:list={["flex h-12 w-12 items-center justify-center rounded-2xl text-xl font-extrabold", i === 3 ? "bg-gold-2 text-navy" : "bg-navy text-gold-soft"]}>{i + 1}</span>
+            <h3 class="mt-2 text-[19px] font-extrabold text-navy">{p.titulo}</h3>
+            <p class="text-[14.5px] leading-relaxed text-slate">{p.texto}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAL -->
+  <section class="bg-navy px-6 py-24 lg:px-10">
+    <div class="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[5fr_7fr]">
+      <div class="group reveal min-h-[440px] overflow-hidden rounded-[28px] bg-navy-2">
+        <img src="/images/fotos/vest-camion.jpg" alt="Asesor acompañando una reclamación" loading="lazy" class="h-full min-h-[440px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+      </div>
+      <div class="flex flex-col gap-5">
+        <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-soft">Nuestro diferencial</span>
+        <h2 class="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">Te acompañamos en tu reclamación, de principio a fin</h2>
+        <p class="text-[17px] leading-relaxed text-[#c8d3e3]">Ofrecemos asesoramiento continuo en los procesos de reclamación ante las aseguradoras, con las personas idóneas en el tema. La gran mayoría de las agencias no ofrece este servicio a sus clientes.</p>
+        <ul class="grid gap-3.5 sm:grid-cols-2">
+          {["Asesoría continua", "Expertos en reclamaciones", "Experiencia en el sector transporte", "Financiación del 100%"].map((t) => (
+            <li class="flex items-center gap-2.5 text-[15.5px] text-white"><Icono name="check" class="h-5 w-5 shrink-0 text-gold-2" />{t}</li>
+          ))}
+        </ul>
+        <a href="/b/quienes-somos" class="mt-2 inline-flex h-13 w-fit items-center rounded-xl bg-white px-6 font-bold text-navy transition-colors hover:bg-sand">Conoce quiénes somos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section class="bg-sand px-6 py-24 lg:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-10">
+      <div class="flex flex-col items-center gap-3 text-center">
+        <span class="text-[13px] font-bold uppercase tracking-[0.12em] text-gold-ink">Nuestros clientes</span>
+        <h2 class="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">Empresas que confían en nosotros</h2>
+      </div>
+      <LogosClientes theme="b" />
+    </div>
+  </section>
+
+  <!-- ALIADOS -->
+  <section class="bg-white px-6 pt-20 pb-10 lg:px-10">
+    <Aliados theme="b" />
+  </section>
+
+  <Compromiso theme="b" />
+
+  <LlamadaB />
+</LayoutB>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>("[data-seg-btn]");
+  const panels = document.querySelectorAll<HTMLElement>("[data-seg-panel]");
+  const pintar = (seg: string) => {
+    btns.forEach((b) => {
+      const on = b.dataset.segBtn === seg;
+      b.setAttribute("aria-selected", String(on));
+      b.classList.toggle("bg-navy", on);
+      b.classList.toggle("text-white", on);
+      b.classList.toggle("text-slate", !on);
+    });
+    panels.forEach((p) => {
+      const on = p.dataset.segPanel === seg;
+      p.classList.toggle("hidden", !on);
+      p.classList.toggle("flex", on);
+    });
+  };
+  btns.forEach((b) => b.addEventListener("click", () => pintar(b.dataset.segBtn!)));
+  pintar("personas");
+</script>

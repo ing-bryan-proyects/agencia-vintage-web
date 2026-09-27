@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pie de página del sitio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<footer style="width: 1440px; height: 320px; box-sizing: border-box; padding: 64px 96px 36px; background: #18181A; display: flex; flex-direction: column; justify-content: space-between; font-family: Montserrat, system-ui, sans-serif; color: #A9A395">
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px">
+<div style="grid-column: span 5; display: flex; flex-direction: column; gap: 18px">
+<img src="/_blob/9fbb8018dfe57a0b166088b694b67109" alt="Agencia Vintage de Seguros LTDA" style="height: 68px; width: auto; display: block; align-self: flex-start">
+<p style="margin: 0; max-width: 380px; font-size: 14.5px; line-height: 1.6">Servicio especializado de asesoría y colocación de seguros. Agentes certificados por Fasecolda.</p>
+</div>
+<nav aria-label="Pie de página" style="grid-column: span 3; display: flex; flex-direction: column; gap: 12px; font-size: 14.5px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #D9BE86">Sitio</span>
+<a href="Main.dc.html" style="color: #E9E4D8; text-decoration: none">Inicio</a>
+<a href="QuienesSomos.dc.html" style="color: #E9E4D8; text-decoration: none">Quiénes somos</a>
+<a href="Servicios.dc.html" style="color: #E9E4D8; text-decoration: none">Nuestros servicios</a>
+<a href="Contacto.dc.html" style="color: #E9E4D8; text-decoration: none">Contacto</a>
+</nav>
+<div style="grid-column: span 4; display: flex; flex-direction: column; gap: 12px; font-size: 14.5px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #D9BE86">Contacto</span>
+<a href="tel:+573025244339" style="color: #E9E4D8; text-decoration: none">+57 302 524 4339</a>
+<a href="tel:+573238003545" style="color: #E9E4D8; text-decoration: none">+57 323 800 3545</a>
+<a href="mailto:agenciavintagedeseguros@gmail.com" style="color: #E9E4D8; text-decoration: none">agenciavintagedeseguros@gmail.com</a>
+<a href="https://agenciavintagedeseguros.com" style="color: #E9E4D8; text-decoration: none">agenciavintagedeseguros.com</a>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; padding-top: 22px; border-top: 1px solid #2E2C28; font-size: 13px">
+<span>© 2026 Agencia Vintage de Seguros LTDA. Todos los derechos reservados.</span>
+<a href="Contacto.dc.html" style="color: #A9A395">Política de tratamiento de datos</a>
+</div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":320}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

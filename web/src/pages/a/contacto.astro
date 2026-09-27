@@ -1,0 +1,100 @@
+---
+import LayoutA from "@/layouts/LayoutA.astro";
+import Icono from "@/components/Icono.astro";
+import Abanico from "@/components/Abanico.astro";
+import { contacto, telUrl, correoUrl, whatsappUrl } from "@/data/contacto";
+---
+<LayoutA title="Contacto" active="contacto">
+  <!-- PORTADA -->
+  <section class="relative overflow-hidden bg-ink px-6 py-20 lg:px-10">
+    <Abanico class="fan-pattern -bottom-20 right-[-100px] hidden w-[700px] opacity-15 md:block" color="#d9be86" />
+    <div class="mx-auto flex max-w-7xl flex-col gap-5">
+      <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold">
+        <span class="h-px w-10 bg-gold"></span>Contacto
+      </span>
+      <h1 class="max-w-3xl font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+        Hablemos de lo que <span class="text-gold">quieres proteger</span>
+      </h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-cream/75">
+        Déjanos tus datos y un asesor te contactará para ayudarte a elegir y financiar tu póliza.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORMULARIO Y DATOS -->
+  <section class="bg-cream px-6 py-24 lg:px-10">
+    <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[5fr_7fr]">
+      <!-- Datos -->
+      <div class="flex flex-col gap-7 rounded-3xl bg-ink p-8 text-white sm:p-12">
+        <span class="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-gold">
+          <span class="h-px w-10 bg-gold"></span>Contacto
+        </span>
+        <h2 class="font-display text-4xl font-bold leading-tight">Hablemos de lo que quieres proteger</h2>
+        <p class="text-base leading-relaxed text-cream/75">Elige el canal que prefieras: cotizaciones, dudas sobre tu póliza o acompañamiento en un siniestro.</p>
+        <div class="mt-auto flex flex-col gap-5 text-base">
+          <a href={telUrl} class="flex items-center gap-3.5 text-white hover:text-gold"><Icono name="telefono" class="h-5 w-5 text-gold" />{contacto.telefonos.join(" · ")}</a>
+          <a href={correoUrl} class="flex items-center gap-3.5 break-all text-white hover:text-gold"><Icono name="correo" class="h-5 w-5 shrink-0 text-gold" />{contacto.correo}</a>
+          <a href={contacto.webUrl} class="flex items-center gap-3.5 text-white hover:text-gold"><Icono name="web" class="h-5 w-5 text-gold" />{contacto.web}</a>
+          <a href={whatsappUrl} class="flex items-center gap-3.5 text-white hover:text-gold"><Icono name="whatsapp" class="h-5 w-5 text-gold" />WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <form class="grid gap-5 rounded-3xl border border-[#e6dcc8] bg-cream-2 p-8 sm:grid-cols-2 sm:p-12" method="post" action="#">
+        <div class="flex flex-col gap-1.5 sm:col-span-2">
+          <h2 class="font-display text-3xl font-bold text-ink">Solicita tu asesoría</h2>
+          <p class="text-[15px] text-mute">Te respondemos lo antes posible.</p>
+        </div>
+        <label class="flex flex-col gap-2 text-sm font-semibold text-carbon">Nombre completo
+          <input type="text" name="nombre" required placeholder="Tu nombre" class="h-13 rounded-xl border border-[#cfc3a8] bg-white px-4 text-[15px] text-ink" />
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-semibold text-carbon">Teléfono / WhatsApp
+          <input type="tel" name="telefono" placeholder="300 000 0000" class="h-13 rounded-xl border border-[#cfc3a8] bg-white px-4 text-[15px] text-ink" />
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-semibold text-carbon">Correo electrónico
+          <input type="email" name="correo" placeholder="tucorreo@ejemplo.com" class="h-13 rounded-xl border border-[#cfc3a8] bg-white px-4 text-[15px] text-ink" />
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-semibold text-carbon">Tipo de seguro
+          <select name="tipo" class="h-13 rounded-xl border border-[#cfc3a8] bg-white px-3.5 text-[15px] text-ink">
+            <option value="">Selecciona una opción</option>
+            <option>Seguros generales</option>
+            <option>Autos y responsabilidad civil</option>
+            <option>Todo riesgo para empresas</option>
+            <option>Transportes</option>
+            <option>Vida y accidentes</option>
+          </select>
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-semibold text-carbon sm:col-span-2">¿Qué necesitas proteger?
+          <textarea name="mensaje" rows="5" placeholder="Cuéntanos brevemente tu caso" class="resize-none rounded-xl border border-[#cfc3a8] bg-white p-4 text-[15px] leading-relaxed text-ink"></textarea>
+        </label>
+        <label class="flex items-start gap-3 text-[13.5px] leading-relaxed text-mute sm:col-span-2">
+          <input type="checkbox" name="datos" required class="mt-0.5 h-5 w-5 shrink-0 accent-ink" />
+          Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012.
+        </label>
+        <div class="flex justify-end sm:col-span-2">
+          <button type="submit" class="h-14 rounded-full bg-ink px-9 font-semibold text-white transition-colors hover:bg-ink-soft">Solicitar asesoría</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="bg-cream px-6 pb-24 lg:px-10">
+    <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
+      <div class="flex flex-col gap-4 rounded-3xl bg-cream-2 p-8 md:col-span-1">
+        <div class="flex flex-col gap-1">
+          <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-gold-ink"><Icono name="ubicacion" class="h-4 w-4" />Oficina</span>
+          <span class="font-semibold text-ink">{contacto.direccion}</span>
+          <span class="text-mute">{contacto.ciudad}</span>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-gold-ink"><Icono name="reloj" class="h-4 w-4" />Horario</span>
+          {contacto.horario.map((h) => <span class="text-mute">{h}</span>)}
+        </div>
+      </div>
+      <div class="flex min-h-[280px] flex-col items-center justify-center gap-2 rounded-3xl border border-[#dccfb6] bg-[#e9e2d3] text-[#6b6e75] md:col-span-2">
+        <Icono name="mapa" class="h-11 w-11" />[Mapa de ubicación de la oficina]
+      </div>
+    </div>
+  </section>
+</LayoutA>

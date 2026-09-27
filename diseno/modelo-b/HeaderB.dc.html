@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Encabezado — Modelo B</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1440px; height: 132px; display: flex; flex-direction: column; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1B2230">
+<div style="height: 44px; flex-shrink: 0; box-sizing: border-box; padding: 0 96px; background: #0B2545; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #C8D3E3">
+<nav aria-label="Segmentos" style="display: flex; align-items: center; gap: 4px">
+<a href="ServiciosB.dc.html" style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; color: #0B2545; text-decoration: none; font-weight: 700">Personas</a>
+<a href="ServiciosB.dc.html" style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; color: #FFFFFF; text-decoration: none; font-weight: 600">Empresas</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 26px">
+<span>Agentes certificados por Fasecolda</span>
+<a href="tel:+573025244339" style="color: #FFFFFF; text-decoration: none; font-weight: 600">Línea +57 302 524 4339</a>
+<a href="ContactoB.dc.html" style="display: inline-flex; align-items: center; gap: 6px; color: #E4C98F; text-decoration: none; font-weight: 700">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"></path><path d="M12 8v4M12 15.5v.01"></path></svg>
+Reporta un siniestro</a>
+</div>
+</div>
+<header style="height: 88px; flex-shrink: 0; box-sizing: border-box; padding: 0 96px; background: #FFFFFF; border-bottom: 1px solid #E3DED3; display: flex; align-items: center; justify-content: space-between">
+<a href="InicioB.dc.html" aria-label="Agencia Vintage de Seguros — inicio" style="display: flex; align-items: center">
+<img src="/_blob/67b2adffeed64f9615da289d0ce4c83b" alt="Agencia Vintage de Seguros LTDA" style="height: 50px; width: auto; display: block">
+</a>
+<nav aria-label="Principal" style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600">
+<a href="InicioB.dc.html" style="{{sInicio}}">Inicio</a>
+<a href="QuienesSomosB.dc.html" style="{{sQuienes}}">Quiénes somos</a>
+<a href="ServiciosB.dc.html" style="{{sServicios}}">Nuestros servicios</a>
+<a href="ContactoB.dc.html" style="{{sContacto}}">Contacto</a>
+<a href="https://wa.me/573025244339" aria-label="WhatsApp" style="margin-left: 12px; width: 46px; height: 46px; border-radius: 50%; border: 1px solid #E3DED3; display: inline-flex; align-items: center; justify-content: center; color: #0B2545">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"></path><path d="M8.8 8.6c.3 2.9 2.7 5.4 5.7 5.9l1.1-1.3 2 .9"></path></svg></a>
+<a href="ContactoB.dc.html" style="display: inline-flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 12px; background: #0B2545; color: #FFFFFF; text-decoration: none; font-weight: 700">Cotizar ahora</a>
+</nav>
+</header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["inicio","quienes","servicios","contacto"],"default":"inicio"},"$preview":{"width":1440,"height":132}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'inicio';
+    const on = 'display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #F4F1EA; color: #0B2545; text-decoration: none;';
+    const off = 'display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; color: #3A4252; text-decoration: none;';
+    return {
+      sInicio: a === 'inicio' ? on : off,
+      sQuienes: a === 'quienes' ? on : off,
+      sServicios: a === 'servicios' ? on : off,
+      sContacto: a === 'contacto' ? on : off
+    };
+  }
+}
+</script>
+</body>
+</html>

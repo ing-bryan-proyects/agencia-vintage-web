@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agencia Vintage de Seguros — Nuestros servicios (Modelo B)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#0B2545;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#1B2230}
+a{color:#0B2545}a:hover{color:#8C6A2F}
+</style>
+</helmet>
+<div style="width: 1440px; height: 2820px; display: flex; flex-direction: column; background: #FFFFFF; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1B2230; overflow: hidden">
+
+<dc-import name="HeaderB" active="servicios" hint-size="1440px,132px"></dc-import>
+
+<!-- PORTADA -->
+<section style="flex-shrink: 0; box-sizing: border-box; padding: 56px 96px 72px; background: #F4F1EA; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px">
+<svg width="560" height="308" viewBox="0 0 400 220" fill="none" stroke="#C9A45C" stroke-width="0.7" aria-hidden="true" style="position: absolute; right: -40px; bottom: -80px; opacity: 0.45">
+<path d="M20 200 A180 180 0 0 1 380 200"></path><path d="M60 200 A140 140 0 0 1 340 200"></path><path d="M100 200 A100 100 0 0 1 300 200"></path>
+<path d="M200 200 L44.1 110"></path><path d="M200 200 L110 44.1"></path><path d="M200 200 L200 20"></path><path d="M200 200 L290 44.1"></path><path d="M200 200 L355.9 110"></path>
+</svg>
+<nav aria-label="Ruta" style="display: flex; gap: 8px; font-size: 13.5px; color: #4A5160; position: relative"><a href="InicioB.dc.html" style="color: #4A5160">Inicio</a><span>/</span><span style="color: #0B2545; font-weight: 700">Nuestros servicios</span></nav>
+<h1 style="margin: 0; max-width: 860px; font-size: 56px; font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; color: #0B2545; position: relative">Seguros para personas y empresas</h1>
+<p style="margin: 0; max-width: 620px; font-size: 18px; line-height: 1.6; color: #4A5160; position: relative">Elige una categoría y conoce cada póliza. Te asesoramos para elegir la adecuada y te acompañamos si necesitas reclamar.</p>
+</section>
+
+<!-- CATÁLOGO -->
+<section style="flex-shrink: 0; box-sizing: border-box; padding: 72px 96px 88px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px">
+<aside style="grid-column: span 4; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8C6A2F">Para personas</span>
+<sc-for list="{{catsPersonas}}" as="c" hint-placeholder-count="2">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.sel}}" style="{{c.estilo}}"><span style="{{c.numEstilo}}">{{c.num}}</span>{{c.label}}</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8C6A2F">Para empresas</span>
+<sc-for list="{{catsEmpresas}}" as="c" hint-placeholder-count="3">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.sel}}" style="{{c.estilo}}"><span style="{{c.numEstilo}}">{{c.num}}</span>{{c.label}}</button>
+</sc-for>
+</div>
+<div style="box-sizing: border-box; padding: 24px; border-radius: 18px; background: #0B2545; display: flex; flex-direction: column; gap: 10px; color: #FFFFFF">
+<span style="font-size: 36px; font-weight: 800; letter-spacing: -0.03em; color: #E4C98F">100%</span>
+<span style="font-size: 14.5px; line-height: 1.55; color: #C8D3E3">de tu póliza puede ser financiada con nuestros aliados CrediSeguro y Finesa.</span>
+</div>
+</aside>
+<div style="grid-column: span 8; height: 1000px; display: flex; flex-direction: column; gap: 28px">
+<div style="box-sizing: border-box; padding: 32px 36px; border-radius: 22px; background: #F4F1EA; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #8C6A2F">{{cur.num}} · {{cur.segmento}}</span>
+<h2 style="margin: 0; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; color: #0B2545">{{cur.titulo}}</h2>
+<p style="margin: 0; max-width: 520px; font-size: 16px; line-height: 1.6; color: #4A5160">{{cur.intro}}</p>
+</div>
+<a href="ContactoB.dc.html" style="flex-shrink: 0; display: inline-flex; align-items: center; height: 50px; padding: 0 24px; border-radius: 12px; background: #0B2545; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700">Cotizar</a>
+</div>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #E3DED3">
+<sc-for list="{{cur.items}}" as="it" hint-placeholder-count="6">
+<div style="border-bottom: 1px solid #E3DED3">
+<button type="button" onClick="{{it.toggle}}" aria-expanded="{{it.expandido}}" style="width: 100%; min-height: 68px; box-sizing: border-box; padding: 0 8px 0 4px; border: 0; background: transparent; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: inherit; font-size: 18px; font-weight: 700; color: #0B2545; text-align: left; cursor: pointer">
+{{it.t}}
+<span style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; border: 1px solid #D9D3C5; display: flex; align-items: center; justify-content: center; color: #8C6A2F">
+<sc-if value="{{it.abierto}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></sc-if>
+<sc-if value="{{it.cerrado}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5v14"></path></svg></sc-if>
+</span>
+</button>
+<sc-if value="{{it.abierto}}" hint-placeholder-val="{{false}}">
+<div style="box-sizing: border-box; padding: 0 60px 24px 4px; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #4A5160">{{it.d}}</p>
+<sc-if value="{{it.tieneLista}}" hint-placeholder-val="{{false}}">
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; font-size: 15px; color: #1B2230">
+<sc-for list="{{it.lista}}" as="li" hint-placeholder-count="4">
+<li style="display: flex; gap: 10px; align-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8C6A2F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12l5 5 9-10"></path></svg>{{li}}</li>
+</sc-for>
+</ul>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- ALIADOS -->
+<section style="flex-shrink: 0; box-sizing: border-box; padding: 64px 96px 40px; background: #FFFFFF; border-top: 1px solid #E3DED3">
+<dc-import name="AliadosB" hint-size="1248px,260px"></dc-import>
+</section>
+
+<dc-import name="LlamadaB" hint-size="1440px,360px"></dc-import>
+
+<div style="flex-grow: 1; background: #0B2545">
+<dc-import name="FooterB" hint-size="1440px,380px"></dc-import>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const data = [
+      { id: 'autos', seg: 'personas', segmento: 'Personas', label: 'Autos y RC', titulo: 'Seguros autos y RC', intro: 'Coberturas para vehículos particulares, de trabajo y de servicio público, y la responsabilidad civil que conllevan.', items: [
+        { t: 'Autos', d: 'Protege tu vehículo frente a los posibles daños generados por un choque o accidente de tránsito, así como a los terceros afectados.' },
+        { t: 'Motos', d: 'Seguro especial pensado para los motociclistas colombianos, que ampara sus motos frente a daños por accidentes de tránsito o a sus propios bienes.' },
+        { t: 'SOAT', d: 'Seguro obligatorio de accidentes de tránsito para todo vehículo automotor que transite por el territorio nacional. Ampara los daños corporales causados a las personas en un accidente de tránsito.' },
+        { t: 'Vehículos utilitarios', d: 'Protección frente a los riesgos a los que se exponen las pick-ups sencillas, camionetas y vans utilizadas como herramienta de trabajo.' },
+        { t: 'Vehículos pesados', d: 'Protección patrimonial del vehículo pesado de carga ante daños materiales o hurto, además de las pérdidas o lesiones causadas a terceros en accidentes de tránsito.' },
+        { t: 'Vehículos de servicio público', d: 'Protege a los propietarios de vehículos de servicio público frente a daños o pérdidas de sus vehículos, y cubre los perjuicios patrimoniales ocasionados a terceros.' },
+        { t: 'RCC transporte público', d: 'Indemniza a los pasajeros del vehículo asegurado que sufran lesiones corporales derivadas de la responsabilidad civil contractual.' },
+        { t: 'RCE transporte público', d: 'Indemniza los perjuicios materiales causados a terceros, derivados de la responsabilidad civil extracontractual en la que incurra el asegurado.' }
+      ]},
+      { id: 'vida', seg: 'personas', segmento: 'Personas', label: 'Vida y accidentes', titulo: 'Seguros de vida', intro: 'Respaldo para ti, tu familia y tus colaboradores ante enfermedad, incapacidad, fallecimiento o accidentes.', items: [
+        { t: 'Individual', d: 'Diseñado para otorgar cobertura en forma individual a causa de una incapacidad o enfermedad grave.' },
+        { t: 'Vida deudores', d: 'Respalda las obligaciones crediticias del asegurado en caso de fallecimiento o incapacidad total y permanente.' },
+        { t: 'Vida grupo', d: 'Indemniza a los beneficiarios o al propio asegurado ante los riesgos a los cuales se encuentre amparado.' },
+        { t: 'Accidentes personales', d: 'Resarce las pérdidas económicas derivadas de un accidente y cubre los gastos médicos en los que incurra el asegurado.' },
+        { t: 'Accidentes en viajes', d: 'Resarce las pérdidas económicas y los gastos médicos del asegurado por accidentes ocurridos durante el viaje.' },
+        { t: 'Accidentes estudiantiles', d: 'Respalda a los estudiantes de instituciones educativas frente a accidentes que puedan sufrir dentro o fuera del plantel.' }
+      ]},
+      { id: 'generales', seg: 'empresas', segmento: 'Empresas', label: 'Seguros generales', titulo: 'Seguros generales', intro: 'Protegemos el patrimonio de personas y empresas frente a pérdidas económicas, reclamaciones de terceros e incumplimientos.', items: [
+        { t: 'Propiedades', d: 'Protegemos el patrimonio de nuestros asegurados frente a pérdidas económicas derivadas de eventos catastróficos, hurtos o pérdidas durante el transporte de mercancías.' },
+        { t: 'Patrimonial', d: 'Amparamos a nuestros asegurados y su patrimonio ante pérdidas económicas derivadas de actos deshonestos o fraudulentos de sus colaboradores.' },
+        { t: 'Responsabilidad civil', d: 'Protección ante eventuales reclamaciones de terceros afectados por perjuicios generados en el desarrollo de una actividad económica.', lista: ['General', 'Profesional', 'Para directores y administradores', 'Infidelidad y riesgos financieros'] },
+        { t: 'Cumplimiento', d: 'Póliza de indemnización al asegurado o beneficiario por los perjuicios derivados del incumplimiento de las obligaciones adquiridas.', lista: ['Seriedad de la oferta', 'Cumplimiento del contrato', 'Devolución de pago anticipado', 'Calidad del servicio', 'Estabilidad de la obra', 'Responsabilidad civil extracontractual'] },
+        { t: 'Ingeniería', d: 'Protección especial con un seguro de bajo costo, diseñado para microempresarios que desean proteger su patrimonio.' },
+        { t: 'Microseguros', d: 'Especialmente diseñado para microempresarios que quieren proteger su patrimonio con un seguro de bajo costo.' }
+      ]},
+      { id: 'empresas', seg: 'empresas', segmento: 'Empresas', label: 'Todo riesgo empresas', titulo: 'Todo riesgo para empresas', intro: 'Propiedad para la empresa: obras, plantas industriales, bienes y maquinaria frente a daños accidentales y fenómenos naturales.', items: [
+        { t: 'Construcción o montaje', d: 'Protege a las empresas dedicadas a la construcción: respalda estructuras de acero con o sin equipo mecánico y/o eléctrico, instalaciones completas de plantas industriales y toda clase de maquinaria (calderas, aparatos, tuberías, equipo mecánico y eléctrico) ante errores durante el montaje, impericia, sabotaje, caída de partes, robo, incendio, rayos y explosión, entre otros.' },
+        { t: 'Daño material', d: 'Protege los bienes tangibles e intangibles asegurados (edificios, equipo electrónico, pérdida de utilidades, entre otros) frente a daños materiales accidentales, súbitos e imprevistos, o por eventos naturales. Cubre los costos y gastos necesarios para extinguir o evitar la propagación de los eventos cubiertos.' },
+        { t: 'Maquinaria y equipo', d: 'Protege el patrimonio de nuestros asegurados frente a pérdidas y/o daños materiales de máquinas y equipos que puedan ocasionarse por incendios y fenómenos naturales, entre otros.' },
+        { t: 'Maquinaria amarilla', d: 'Protección ante pérdidas y/o daños materiales de maquinaria amarilla y agrícola ocasionados por incendios, volcamientos, inundaciones y fenómenos naturales.' }
+      ]},
+      { id: 'transportes', seg: 'empresas', segmento: 'Empresas', label: 'Transportes', titulo: 'Seguro de transportes', intro: 'Tu carga protegida desde el momento en que se despacha hasta que llega a su destinatario, por cualquier vía.', items: [
+        { t: 'Póliza automática para generadores de carga', d: 'Ampara los riesgos del traslado de bienes o mercancías de empresas generadoras de carga de importación, exportación, nacional y urbana, por vía aérea, marítima, fluvial, férrea, terrestre o cualquiera de sus combinaciones, desde el despacho hasta la entrega al destinatario.' },
+        { t: 'Póliza automática de transporte de mercancías', d: 'Ampara los riesgos del transporte terrestre de mercancías dentro del territorio nacional que sean responsabilidad del transportador asegurado, desde el despacho de la carga hasta su entrega en el destino final.' },
+        { t: 'Póliza específica de transporte de mercancías', d: 'Cobertura para un despacho determinado de mercancías de importación, exportación, nacional o urbana, por cualquier vía, desde que se despacha la carga hasta que es entregada al destinatario.' }
+      ]}
+    ];
+    const st = this.state || {};
+    const active = st.cat || 'autos';
+    const abierto = st.abierto === undefined ? 0 : st.abierto;
+    const base = 'width: 100%; min-height: 58px; box-sizing: border-box; padding: 0 18px; border-radius: 14px; display: flex; align-items: center; gap: 14px; font-family: inherit; font-size: 16px; font-weight: 700; text-align: left; cursor: pointer; ';
+    const numBase = 'width: 32px; height: 32px; flex-shrink: 0; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; ';
+    const cat = (c, i) => {
+      const on = c.id === active;
+      return {
+        label: c.label,
+        num: '0' + (i + 1),
+        sel: on ? 'true' : 'false',
+        pick: () => this.setState({ cat: c.id, abierto: 0 }),
+        estilo: base + (on ? 'border: 1px solid #0B2545; background: #0B2545; color: #FFFFFF;' : 'border: 1px solid #E3DED3; background: #FFFFFF; color: #0B2545;'),
+        numEstilo: numBase + (on ? 'background: #C9A45C; color: #0B2545;' : 'background: #F4F1EA; color: #8C6A2F;')
+      };
+    };
+    const catsAll = data.map(cat);
+    const idx = Math.max(0, data.findIndex((c) => c.id === active));
+    const c = data[idx];
+    const cur = {
+      num: '0' + (idx + 1), titulo: c.titulo, intro: c.intro, segmento: c.segmento,
+      items: c.items.map((it, i) => ({
+        t: it.t, d: it.d, lista: it.lista || [], tieneLista: !!it.lista,
+        abierto: i === abierto, cerrado: i !== abierto, expandido: i === abierto ? 'true' : 'false',
+        toggle: () => this.setState({ abierto: i === abierto ? -1 : i })
+      }))
+    };
+    return { catsPersonas: catsAll.slice(0, 2), catsEmpresas: catsAll.slice(2), cur };
+  }
+}
+</script>
+</body>
+</html>
